@@ -15,7 +15,7 @@ namespace ParseYourDictionary
         [STAThread]
         static void Main(string[] args)
         {
-            //test1
+            //test2
             string word = "";
             int mode = 0;
             LogFile.WriteFile("Start 01", LogLevel.Info);
