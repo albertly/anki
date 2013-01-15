@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseYourDictionary", "ParseYourDictionary\ParseYourDictionary.csproj", "{F5D497ED-A6C2-44D7-BB96-5F68875B6E96}"
 EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ParseYourDictionary\\ParseYourDictionary.csproj
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = ParseYourDictionary\\
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
