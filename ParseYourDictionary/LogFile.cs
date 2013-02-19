@@ -24,6 +24,7 @@ namespace ParseYourDictionary
 
         public static void WriteFile(string input, LogLevel logLevel)
         {
+            
             StreamWriter w = null;
             if (m_iLogLevel < logLevel)
             {
