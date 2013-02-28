@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseYourDictionary", "ParseYourDictionary\ParseYourDictionary.csproj", "{F5D497ED-A6C2-44D7-BB96-5F68875B6E96}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchProcessor", "BatchProcessor\BatchProcessor.csproj", "{1C5748B2-AFB1-4D2C-A649-B0C85DF9A6FA}"
+EndProject
 Global
 	GlobalSection(SourceCodeControl) = preSolution
-		SccNumberOfProjects = 2
+		SccNumberOfProjects = 3
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = ParseYourDictionary\\ParseYourDictionary.csproj
 		SccLocalPath1 = .
 		SccProjectFilePathRelativizedFromConnection1 = ParseYourDictionary\\
+		SccProjectUniqueName2 = BatchProcessor\\BatchProcessor.csproj
+		SccLocalPath2 = .
+		SccProjectFilePathRelativizedFromConnection2 = BatchProcessor\\
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +25,10 @@ Global
 		{F5D497ED-A6C2-44D7-BB96-5F68875B6E96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5D497ED-A6C2-44D7-BB96-5F68875B6E96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5D497ED-A6C2-44D7-BB96-5F68875B6E96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5748B2-AFB1-4D2C-A649-B0C85DF9A6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5748B2-AFB1-4D2C-A649-B0C85DF9A6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5748B2-AFB1-4D2C-A649-B0C85DF9A6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5748B2-AFB1-4D2C-A649-B0C85DF9A6FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

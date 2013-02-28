@@ -1,0 +1,9 @@
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\bin\Debug\BatchProcessor.exe
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\bin\Debug\BatchProcessor.pdb
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\BatchProcessor.Form1.resources
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\BatchProcessor.Properties.Resources.resources
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\BatchProcessor.csproj.GenerateResource.Cache
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\BatchProcessor.exe
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\BatchProcessor.pdb
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\BatchProcessor\obj\Debug\BatchProcessor.frmList.resources
