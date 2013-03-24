@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,9 +34,17 @@ namespace ParseYourDictionary
             }
 
             string htmlCode = "";
-            using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
+            try
             {                
-                htmlCode = client.DownloadString(urlString);
+                using (WebClient client = new WebClient()) // WebClient class inherits IDisposable
+                {
+                    
+                    htmlCode = client.DownloadString(urlString);
+                }
+            }
+            catch(Exception ex)
+            {
+                LogFile.WriteFile("GetHTML:" + ex.ToString(), LogLevel.Errors);
             }
 
             return htmlCode;
@@ -60,12 +68,12 @@ namespace ParseYourDictionary
 
         }
 
-        public static List<string> GetFromCache( string word, string path)
+        public static List<string> GetFromCache(string fullname)
         {
             List<string> l = null;
             try
             {
-                using (Stream stream = File.Open(path + "\\" + word.Substring(0, 2) + "\\" + word + ".bin", FileMode.Open))
+                using (Stream stream = File.Open(fullname, FileMode.Open))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
 
@@ -77,6 +85,13 @@ namespace ParseYourDictionary
             }
 
             return l;
+
+        }
+
+        public static List<string> GetFromCache( string word, string path)
+        {
+            string fullname = path + "\\" + word.Substring(0, 2) + "\\" + word + ".bin";
+            return GetFromCache(fullname);
         }
 
 
@@ -88,21 +103,29 @@ namespace ParseYourDictionary
             string st1 = @"<div class=""example example_show"">";
             string st2 = @"<div class=""example example_hide"">";
             int lenSeparator = st1.Length;
-            int lenEndSeparator = "</div>".Length; 
-            index = IndexOfAny(stHTML,index,st1, st2);
-            endIndex = stHTML.IndexOf(@"<div id=""sentence_examples_more"">", index);
+            int lenEndSeparator = "</div>".Length;
 
-            while (index != -1)
+            try
             {
-                string st;
-                int endIndexTmp = 0;
-                
-                endIndexTmp = stHTML.IndexOf("</div>", index);
+                index = IndexOfAny(stHTML, index, st1, st2);
+                endIndex = stHTML.IndexOf(@"<div id=""sentence_examples_more"">", index);
 
-                st = stHTML.Substring(index + lenSeparator, endIndexTmp - index - lenSeparator);
-                st = StripHTML(st);
-                examples.Add(st);
-                index = IndexOfAny(stHTML, endIndexTmp, st1, st2);
+                while (index != -1)
+                {
+                    string st;
+                    int endIndexTmp = 0;
+
+                    endIndexTmp = stHTML.IndexOf("</div>", index);
+
+                    st = stHTML.Substring(index + lenSeparator, endIndexTmp - index - lenSeparator);
+                    st = StripHTML(st);
+                    examples.Add(st);
+                    index = IndexOfAny(stHTML, endIndexTmp, st1, st2);
+                }
+            }
+            catch(Exception ex)
+            {
+                LogFile.WriteFile("ParseExamplesD:" + ex.ToString(), LogLevel.Errors);
             }
 
             return examples;
@@ -132,29 +155,34 @@ namespace ParseYourDictionary
             List<string> examples = new List<string>();
             int index = 0;
             int endIndex = 0;
-            index = stHTML.IndexOf("<ul class=\"example\">");
-            endIndex = stHTML.IndexOf("</ul>",index);
 
-            while (index < endIndex-5)
+            try
             {
-                string st;
-                int endIndexTmp = 0;
-                index = stHTML.IndexOf("<li>", index);
-                endIndexTmp = stHTML.IndexOf("</li>", index);
 
-                st = stHTML.Substring(index + 4, endIndexTmp - index - 4);
-                st = st.Replace("<strong>", "").Replace("</strong>", "").Replace("\n", " ");
-                examples.Add(st);
-                index = endIndexTmp + 5;
+                index = stHTML.IndexOf("<ul class=\"example\">");
+                endIndex = stHTML.IndexOf("</ul>", index);
+
+                while (index < endIndex - 5)
+                {
+                    string st;
+                    int endIndexTmp = 0;
+                    index = stHTML.IndexOf("<li>", index);
+                    endIndexTmp = stHTML.IndexOf("</li>", index);
+
+                    st = stHTML.Substring(index + 4, endIndexTmp - index - 4);
+                    st = st.Replace("<strong>", "").Replace("</strong>", "").Replace("\n", " ");
+                    examples.Add(st);
+                    index = endIndexTmp + 5;
+                }
             }
-            
+            catch(Exception ex)
+            {
+                LogFile.WriteFile("ParseExamples:" + ex.ToString(), LogLevel.Errors);
+            }
             return examples;
         }
 
 
-        static readonly int BufferSize = 16384;
-        static readonly int NumFallback = 16384;
-        static readonly int RetrieveTrigger = 4096;
         public static string GetRandomExample(List<string> examples)
         {
             RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
