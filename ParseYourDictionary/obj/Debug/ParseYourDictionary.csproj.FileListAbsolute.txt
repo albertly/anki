@@ -8,3 +8,4 @@ C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYou
 C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\ParseYourDictionary\obj\Debug\ParseYourDictionary.pdb
 C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\ParseYourDictionary\obj\Debug\ParseYourDictionary.frmSentence.resources
 C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\ParseYourDictionary\obj\Debug\ParseYourDictionary.Form2.resources
+C:\Documents and Settings\amin\My Documents\Visual Studio 2008\Projects\ParseYourDictionary\ParseYourDictionary\obj\Debug\ParseYourDictionary.frmWait.resources
