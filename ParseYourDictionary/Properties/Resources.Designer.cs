@@ -59,5 +59,12 @@ namespace ParseYourDictionary.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap loading29 {
+            get {
+                object obj = ResourceManager.GetObject("loading29", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

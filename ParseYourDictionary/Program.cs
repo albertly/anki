@@ -5,11 +5,16 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;  
+using System.Threading;
+using System.ComponentModel;
+
 namespace ParseYourDictionary
 {
     static class Program
     {
+        static public BackgroundWorker bw;
+        static public long bWork = 1;
+        static frmWait f;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -53,18 +58,26 @@ namespace ParseYourDictionary
                     bool bNeedToStore = false;
                     if (!YourDictionary.CheckCache(word, Application.UserAppDataPath))
                     {
+                        Application.EnableVisualStyles();
+                        Application.SetCompatibleTextRenderingDefault(false);
+                        bw = new BackgroundWorker();
+                        bWork = 1;
+                        bw.DoWork += new DoWorkEventHandler(bw_DoWork);
+                        bw.RunWorkerAsync();
+
                         st = YourDictionary.GetHTML(word, 'E');
                         l = YourDictionary.ParseExamples(st);
 
                         st = YourDictionary.GetHTML(word, 'D');
                         l.AddRange(YourDictionary.ParseExamplesD(st));
 
+
                         threadWriteCache = new Thread(delegate()
                         {
                             YourDictionary.StoreInCache(l, word, Application.UserAppDataPath);
                         });
                         threadWriteCache.Start();
-
+                        System.Threading.Interlocked.Decrement(ref Program.bWork);  
                         
                     }
                     else
@@ -121,6 +134,11 @@ namespace ParseYourDictionary
 
           }
 
+        static void bw_DoWork(object sender, DoWorkEventArgs e)
+        {
+            f = new frmWait();
+            f.ShowDialog();
 
+        }
     }
 }

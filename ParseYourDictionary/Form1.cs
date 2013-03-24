@@ -11,7 +11,7 @@ namespace ParseYourDictionary
 {
     public partial class Form1 : Form
     {
-
+        bool newBase = true;
         public string word;
         public Form1()
         {
@@ -21,7 +21,10 @@ namespace ParseYourDictionary
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
+            webBrowser1.AllowNavigation = false;
+            
+            newBase = true;
             webBrowser1.Url = new Uri( @"http://www.yourdictionary.com/" + word);
 
 
@@ -34,7 +37,16 @@ namespace ParseYourDictionary
 
         private void webBrowser1_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-
+            
+            if (!newBase && !e.Url.IsBaseOf(webBrowser1.Url))
+            {
+                
+                e.Cancel = true;
+            }
+            else
+            {
+                newBase = false;
+            }
         }
 
         private void webBrowser1_Navigated(object sender, WebBrowserNavigatedEventArgs e)
@@ -49,24 +61,32 @@ namespace ParseYourDictionary
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            newBase = true;
             webBrowser1.Url = new Uri(@"http://www.yourdictionary.com/" + word);
-
+            
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
-        {            
+        {
+            newBase = true;
             webBrowser1.Url = new Uri(@"http://americanheritage.yourdictionary.com/" + word);
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
-        {            
+        {
+            newBase = true;
             webBrowser1.Url = new Uri(@"http://dictionary.reference.com/browse/" + word);
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-
+            newBase = true;
             webBrowser1.Url = new Uri(@"http://www.memidex.com/" + word);
+        }
+
+        private void webBrowser1_LocationChanged(object sender, EventArgs e)
+        {
+
         }
 
 
